@@ -1,0 +1,22 @@
+ #p_top {
+     font-weight: bold;
+ }
+
+ body {
+     margin-left: 20px;
+     margin-right: 20px;
+     border: solid black 1px;
+     padding: 10px;
+ }
+
+ img {
+     width: 200px;
+ }
+
+ a {
+     text-decoration: none;
+ }
+
+ .green-text {
+     color: green;
+ }
