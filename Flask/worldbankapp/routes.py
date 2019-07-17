@@ -1,0 +1,12 @@
+from worldbankapp import app
+from flask import render_template
+
+@app.route('/')
+
+@app.route('/index')
+def index():
+    return render_template('index.html')
+
+@app.route('/project-one')
+def project():
+    return render_template('project_one.html')
