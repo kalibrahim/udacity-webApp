@@ -1,11 +1,29 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Index Page</title>
+    <script src="https://cdn.plot.ly/plotly-1.2.0.min.js"></script>
+
 </head>
+
 <body>
     <h1>This is the index page</h1>
-    {% for tuple in data_set %}
-    <p>{{ tuple }}</p>
-    {% endfor %}
+    <p>{{ids}}</p>
+    <p>{{figuresJSON}}</p>
+    <div id="{{ids[0]}}"></div>
+
+    <script type="text/javascript">
+        var figures = {{figuresJSON | safe}};
+        var ids = {
+            {
+                ids | safe
+            }
+        };
+        for (var i in figures) {
+            Plotly.plot(ids[i],
+                figures[i].data,
+                figures[i].layout || {});
+        }
+    </script>
 </body>
