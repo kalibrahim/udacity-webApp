@@ -158,19 +158,33 @@ def return_figures():
     # TODO: Make a fifth chart from the data in API_SP.RUR.TOTL_DS2_en_csv_v2_9914824.csv
     # This csv file contains data about the total rural population for various countries over many years
     # Make a bar chart showing the rural population of these countries ['United States', 'China', 'Japan', 'Germany', 'United Kingdom', 'India', 'France', 'Brazil', 'Italy', 'Canada'] in the year 2015.
-    
+    graph_five = []
+
     # HINT: you can use the clean_data() function. You'll need to specify the path to the csv file, and which columns you want to keep. The chart 2 code might help with understanding how to code this.
-    
+    df = cleandata('data/API_SP.RUR.TOTL_DS2_en_csv_v2_9914824.csv')
+    df.columns = ['country', 'year', 'ruralpopulation']
+    df.sort_values('ruralpopulation', ascending=False, inplace=True)
+    df = df[df['year'] == 2015]
     # TODO: once the data is clean, make a list called graph_five and append the plotly graph to this list.
-    
+    graph_five.append(
+      go.Bar(
+        x = df.country.tolist(),
+        y = df.ruralpopulation.tolist(),
+      )
+    )
+
     # TODO: fill a layout variable for the fifth visualization
-    
+    layout_five = dict(title = 'Total rural population per country for 2015',
+                  xaxis = dict(title = 'Country'),
+                  yaxis = dict(title = 'Rural Population'),
+                  )
     # append all charts to the figures list
     figures = []
     figures.append(dict(data=graph_one, layout=layout_one))
     figures.append(dict(data=graph_two, layout=layout_two))
     figures.append(dict(data=graph_three, layout=layout_three))
     figures.append(dict(data=graph_four, layout=layout_four))
+    figures.append(dict(data=graph_five, layout=layout_five))
     
     # TODO: append the figure five information to the figures list
     
